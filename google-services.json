@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "774806722557",
+    "project_id": "smart-wallet-ac717",
+    "storage_bucket": "smart-wallet-ac717.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774806722557:android:2b8634cbcbb8c17e1aab94",
+        "android_client_info": {
+          "package_name": "com.jordanpeters.smartwallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774806722557-ro3beim6mjug07eg2po06mh7nqv610u0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbbX88K-TP6BALaz0FGsUnU8Brj1HB73Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774806722557-ro3beim6mjug07eg2po06mh7nqv610u0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

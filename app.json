@@ -37,7 +37,9 @@
           }
         }
       ],
-      "react-native-google-auth"
+      "react-native-google-auth",
+      "expo-image",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,

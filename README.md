@@ -1,4 +1,6 @@
-# Welcome to your Expo app 👋
+# Smart Wallet
+
+A smart wallet that lets users purchase benefits with their balance.
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
@@ -16,24 +18,24 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. Google login requires a local development build to work correctly. To run the build for Android:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   a. Download [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   b. You may need to set JAVA_HOME in your `~/.bashrc` or `~/.zshrc`:
 
-## Get a fresh project
+   ```bash
+   export JAVA_HOME=$(/usr/libexec/java_home -v17)
+   export PATH="$JAVA_HOME/bin:$PATH"
+   ```
 
-When you're ready, run:
+   c. Download an Android SDK (preferably 36), recommended to do this through Android Studio. Go to Tools > SDK Manager and if you have 36 installed, copy the path listed, then put an ANDROID_HOME in your Terminal's rc file just like above:
 
-```bash
-npm run reset-project
-```
+   ```bash
+   export ANDROID_HOME="/Users/<YOUR USERNAME HERE>/Library/Android/sdk"
+   ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+   d. Run `npm run android`
 
 ### Other setup steps
 
@@ -41,16 +43,13 @@ This command will move the starter code to the **app-example** directory and cre
 - If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
 - Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
 
+## My technology decisions
+
+1. [React Native Google Sign In](https://react-native-google-signin.github.io/) with 3.5k stars on GitHub, it's widely considered to be the standard for implementing Google Sign In for both React Native and Expo. Expo actually link to this package on their documentation for implementing Google Auth. I researched other options, including a library that implements the non-deprecated, standard Credential Manager solution for this problem, however it had no implementation for iOS. This solution provides an implementation for Android & iOS, and in a production project, if we purchased premium would allow us to use the standard Credential Manager approach, and would offer a seamless path to migrate to the premium 'universal sign in' option.
+
 ## Learn more
 
 To learn more about developing your project with Expo, look at the following resources:
 
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

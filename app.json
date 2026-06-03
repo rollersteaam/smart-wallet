@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "smart-wallet",
+    "name": "Smart Wallet",
     "slug": "smart-wallet",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,8 @@
     "scheme": "smartwallet",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.jordanpeters.smartwallet"
     },
     "android": {
       "adaptiveIcon": {
@@ -35,7 +36,8 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      "react-native-google-auth"
     ],
     "experiments": {
       "typedRoutes": true,

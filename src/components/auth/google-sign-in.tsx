@@ -8,7 +8,7 @@ import { initializeAuth, signIn } from "@/services/auth/GoogleSignIn";
 const LoginImage = Platform.select({
     android: require("@/assets/images/google/Android/svg/dark/android_dark_rd_SI.svg"),
     ios: require("@/assets/images/google/iOS/svg/dark/ios_dark_rd_SI.svg"),
-    web: require("@/assets/images/google/Web (mobile + desktop)/svg/dark/web_dark_rd_SI.svg")
+    default: require("@/assets/images/google/Web (mobile + desktop)/svg/dark/web_dark_rd_SI.svg")
 }) 
 
 export default function GoogleSignIn() {

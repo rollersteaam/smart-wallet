@@ -45,7 +45,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 ## My technology decisions
 
-1. [React Native Google Sign In](https://react-native-google-signin.github.io/) with 3.5k stars on GitHub, it's widely considered to be the standard for implementing Google Sign In for both React Native and Expo. Expo actually link to this package on their documentation for implementing Google Auth. I researched other options, including a library that implements the non-deprecated, standard Credential Manager solution for this problem, however it had no implementation for iOS. This solution provides an implementation for Android & iOS, and in a production project, if we purchased premium would allow us to use the standard Credential Manager approach, and would offer a seamless path to migrate to the premium 'universal sign in' option.
+1. Google Sign In: [React Native Google Auth](https://github.com/sbaiahmed1/react-native-google-auth) with 152 stars on GitHub. Whilst [React Native Google Sign In](https://react-native-google-signin.github.io/) (3.5k stars on GitHub) is the most widely used and recommended library, its free tier relies on an API that has been deprecated for a while. By using another library inspired by it that is free and implements the same recommended Credentials Manager flow, we can avoid the app being bricked by deprecation. The most ideal solution might be to buy the premium for RNGSI to use the most popular library, but this library certainly does the job well, for both Android and iOS.
 
 ## Learn more
 

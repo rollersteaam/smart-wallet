@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
     gap: Spacing.four,
   },
   title: {
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingTop: Spacing.three,
   },
   subtitle: {
     textAlign: 'center',

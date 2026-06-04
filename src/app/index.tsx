@@ -15,7 +15,9 @@ export default function LoginScreen() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      router.dismissAll()
+      if (router.canGoBack()) {
+        router.dismissAll()
+      }
       router.replace("/home")
     }
   }, [isLoggedIn])

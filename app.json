@@ -39,15 +39,7 @@
       ],
       "react-native-google-auth",
       "expo-image",
-      [
-        "expo-asset",
-        {
-          "assets": [
-            "@/assets/images/tabIcons/home.png",
-            "@/assets/images/tabIcons/explore.png"
-          ]
-        }
-      ]
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,

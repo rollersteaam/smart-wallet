@@ -15,7 +15,7 @@ export default function AppTabs() {
       indicatorColor={colors.backgroundElement}
       labelStyle={{ selected: { color: colors.text } }}
       hidden={!isLoggedIn}>
-        <NativeTabs.Trigger name="index" hidden={!isLoggedIn}>
+        <NativeTabs.Trigger name="home" hidden={!isLoggedIn}>
           <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
           <NativeTabs.Trigger.Icon
             src={{ uri: 'home' }}
@@ -30,8 +30,6 @@ export default function AppTabs() {
             renderingMode="template"
           />
         </NativeTabs.Trigger>
-      
-        <NativeTabs.Trigger name="login" hidden={isLoggedIn} />
     </NativeTabs>
   );
 }

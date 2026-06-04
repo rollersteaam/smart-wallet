@@ -6,8 +6,20 @@ import GoogleSignIn from '@/components/auth/google-sign-in';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import { useIsLoggedIn } from '@/hooks/use-auth';
+import { router } from 'expo-router';
+import { useEffect } from 'react';
 
 export default function LoginScreen() {
+  const isLoggedIn = useIsLoggedIn()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.dismissAll()
+      router.replace("/home")
+    }
+  }, [isLoggedIn])
+
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>

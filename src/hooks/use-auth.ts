@@ -8,7 +8,7 @@ export const useAuth = create(
             user: null as User | null
         },
         (set) => ({
-            setUser: (newUser: User) => set({ user: newUser })
+            setUser: (newUser: User | null) => set({ user: newUser })
         })
     )
 )

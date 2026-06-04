@@ -1,12 +1,22 @@
+import { Button, Host, Text } from '@expo/ui';
 import { router, Stack } from 'expo-router';
-import { SymbolView } from 'expo-symbols';
-import { Pressable, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import IconButton from '@/components/controls/icon-button';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
+import { useAuth } from '@/hooks/use-auth';
 
 export default function SettingsScreen() {
+  const setUser = useAuth((s) => s.setUser)
+
+  const signOut = () => {
+    setUser(null)
+    router.dismissAll()
+    router.replace('/')
+  }
+
   return (
     <>
       <Stack.Screen options={{
@@ -16,18 +26,27 @@ export default function SettingsScreen() {
         headerTitleStyle: {
           fontSize: 32
         },
-        headerLeft: () => (
-          <Pressable onPress={() => router.back()} hitSlop={8}>
-            <SymbolView
-              name={{ ios: 'chevron.left', android: 'arrow_back', web: 'arrow_back' }}
-              size={32}
-              tintColor="#ffffff"
-              />
-          </Pressable>
-        ),
+        headerLeft: () => <IconButton
+            onPress={() => router.back()} 
+            name={{ ios: 'chevron.left', android: 'arrow_back', web: 'arrow_back' }}
+            style={{
+              paddingRight: Spacing.one
+            }}
+          />,
       }} />
       <ThemedView style={styles.container}>
         <SafeAreaView style={styles.safeArea}>
+          <Host matchContents>
+            <Button
+              onPress={signOut}
+              >
+                <Text textStyle={{
+                  fontSize: 24
+                }}>
+                  Sign Out
+                </Text>
+              </Button>
+          </Host>
           {/* <ThemedText type="title">Settings</ThemedText> */}
         </SafeAreaView>
       </ThemedView>
@@ -41,6 +60,7 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    padding: Spacing.four
+    padding: Spacing.four,
+    paddingTop: Spacing.six
   },
 });

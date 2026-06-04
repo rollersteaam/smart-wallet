@@ -28,8 +28,9 @@ export async function signIn() {
         const response = await GoogleAuth.signIn();
 
         if (response.type === 'success') {
-            console.log('User signed in:', response.data.user);
-            // Handle successful sign-in
+            const data = response.data
+            console.log('User signed in:', data.user);
+            return data
         } else if (response.type === 'cancelled') {
             console.log('Sign in cancelled by user');
         }
@@ -37,4 +38,6 @@ export async function signIn() {
         console.error('Sign in failed:', error);
         throw error
     }
+
+    return null
 }

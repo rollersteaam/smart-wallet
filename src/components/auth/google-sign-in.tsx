@@ -3,18 +3,28 @@ import { Platform, Pressable, StyleSheet } from 'react-native';
 
 import { Image } from "expo-image";
 
-import { initializeAuth, signIn } from "@/services/auth/GoogleSignIn";
+import { useAuth } from '@/hooks/use-auth';
+import { initializeAuth, signIn as signInWithGoogle } from "@/services/auth/GoogleSignIn";
 
 const LoginImage = Platform.select({
     android: require("@/assets/images/google/Android/svg/dark/android_dark_rd_SI.svg"),
     ios: require("@/assets/images/google/iOS/svg/dark/ios_dark_rd_SI.svg"),
     default: require("@/assets/images/google/Web (mobile + desktop)/svg/dark/web_dark_rd_SI.svg")
-}) 
+})
 
 export default function GoogleSignIn() {
     useEffect(() => {
         initializeAuth()
     }, [])
+
+    const setUser = useAuth(s => s.setUser)
+
+    const signIn = async () => {
+        const data = await signInWithGoogle()
+        if (data) {
+            setUser(data?.user)
+        }
+    }
 
     return (
         <Pressable onPress={signIn}>

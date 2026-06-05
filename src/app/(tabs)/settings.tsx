@@ -49,7 +49,6 @@ export default function SettingsScreen() {
                 </Text>
               </Button>
           </Host>
-          {/* <ThemedText type="title">Settings</ThemedText> */}
         </SafeAreaView>
       </ThemedView>
     </>

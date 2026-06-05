@@ -1,9 +1,8 @@
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useAuth } from '@/hooks/use-auth';
 import useRemoteAsset from '@/hooks/use-remote-asset';
@@ -25,19 +24,17 @@ export default function HomeScreen() {
             <Image
               source={userPhoto}
               style={{
-                width: 150,
-                height: 150,
+                width: 100,
+                height: 100,
                 borderRadius: 9999,
                 overflow: 'hidden'
               }}
               />
 
             <ThemedText type="title" style={styles.title}>
-              Welcome, {user.displayName}.
+              Welcome, {user.displayName?.split(" ")[0]}.
             </ThemedText>
           </ThemedView>
-
-          {Platform.OS === 'web' && <WebBadge />}
         </SafeAreaView>
       </ThemedView>
   );

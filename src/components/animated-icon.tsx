@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import Animated, { Easing, Keyframe } from 'react-native-reanimated';
+import Animated, { Easing, Keyframe, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 
 const INITIAL_SCALE_FACTOR = Dimensions.get('screen').height / 90;
@@ -54,43 +54,27 @@ const keyframe = new Keyframe({
   },
 });
 
-const logoKeyframe = new Keyframe({
-  0: {
-    transform: [{ scale: 1.3 }],
-    opacity: 0,
-  },
-  40: {
-    transform: [{ scale: 1.3 }],
-    opacity: 0,
-    easing: Easing.elastic(0.7),
-  },
-  100: {
-    opacity: 1,
-    transform: [{ scale: 1 }],
-    easing: Easing.elastic(0.7),
-  },
-});
-
-const glowKeyframe = new Keyframe({
-  0: {
-    transform: [{ rotateZ: '0deg' }],
-  },
-  100: {
-    transform: [{ rotateZ: '7200deg' }],
-  },
-});
-
 export function AnimatedIcon() {
+  const glowScale = useSharedValue(1);
+
+  useEffect(() => {
+    glowScale.value = withRepeat(
+      withTiming(1, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
+      -1,
+      true
+    );
+  }, []);
+
+  const glowAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: glowScale.value }]
+  }));
+
   return (
     <View style={styles.iconContainer}>
-      <Animated.View entering={glowKeyframe.duration(60 * 1000 * 4)} style={styles.glow}>
-        <Image style={styles.glow} source={require('@/assets/images/wallet.svg')} />
-      </Animated.View>
-
-      <Animated.View entering={keyframe.duration(DURATION)} style={styles.background} />
-      <Animated.View style={styles.imageContainer} entering={logoKeyframe.duration(DURATION)}>
+      <Animated.View entering={keyframe.duration(DURATION)} style={[styles.background, glowAnimatedStyle]} />
+      <View style={styles.imageContainer}>
         <Image style={styles.image} source={require('@/assets/images/wallet.svg')} />
-      </Animated.View>
+      </View>
     </View>
   );
 }
@@ -122,7 +106,7 @@ const styles = StyleSheet.create({
     experimental_backgroundImage: `linear-gradient(180deg, #3C9FFE, #0274DF)`,
     width: 128,
     height: 128,
-    position: 'absolute',
+    position: 'absolute'
   },
   backgroundSolidColor: {
     ...StyleSheet.absoluteFill,

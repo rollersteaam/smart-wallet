@@ -3,8 +3,7 @@ import { useColorScheme } from 'react-native';
 
 import { Colors } from '@/constants/theme';
 import { useIsLoggedIn } from '@/hooks/use-auth';
-import { router, Stack } from 'expo-router';
-import IconButton from './controls/icon-button';
+import { Stack } from 'expo-router';
 
 export default function AppTabs() {
   const scheme = useColorScheme();
@@ -18,13 +17,10 @@ export default function AppTabs() {
           headerShown: true,
           title: '',
           headerTransparent: true,
-          headerRight: () => <IconButton
-              onPress={() => router.push('/settings')}
-              name={{
-                ios: "gearshape",
-                android: "settings",
-                web: "settings"
-              }} />,
+          headerRight: () => {
+            return ( 
+            <></>)
+          },
         }}
       />
     
@@ -34,9 +30,12 @@ export default function AppTabs() {
         labelStyle={{ selected: { color: colors.text } }}
         hidden={!isLoggedIn}>
           <NativeTabs.Trigger name="home" hidden={!isLoggedIn}>
-            <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+            <NativeTabs.Trigger.Label>
+              Home
+            </NativeTabs.Trigger.Label>
             <NativeTabs.Trigger.Icon
-              src={{ uri: 'home' }}
+              sf="house"  
+              md="home"
               renderingMode="template"
             />
           </NativeTabs.Trigger>
@@ -44,7 +43,17 @@ export default function AppTabs() {
           <NativeTabs.Trigger name="explore" hidden={!isLoggedIn}>
             <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
             <NativeTabs.Trigger.Icon
-              src={{ uri: 'explore' }}
+              sf="globe"
+              md="globe"
+              renderingMode="template"
+            />
+          </NativeTabs.Trigger>
+
+          <NativeTabs.Trigger name="settings" hidden={!isLoggedIn}>
+            <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
+            <NativeTabs.Trigger.Icon
+              sf="gearshape"
+              md="settings"
               renderingMode="template"
             />
           </NativeTabs.Trigger>

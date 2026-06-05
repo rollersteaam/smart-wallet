@@ -3,7 +3,6 @@ import { Platform, Pressable, StyleSheet } from 'react-native';
 
 import { Image } from "expo-image";
 
-import { useAuth } from '@/hooks/use-auth';
 import { initializeAuth, signIn as signInWithGoogle } from "@/services/auth/GoogleSignIn";
 
 const LoginImage = Platform.select({
@@ -17,13 +16,8 @@ export default function GoogleSignIn() {
         initializeAuth()
     }, [])
 
-    const setUser = useAuth(s => s.setUser)
-
     const signIn = async () => {
-        const user = await signInWithGoogle()
-        if (user) {
-            setUser(user)
-        }
+        await signInWithGoogle()
     }
 
     const [hovered, setHovered] = useState(false);

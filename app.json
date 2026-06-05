@@ -4,7 +4,7 @@
     "slug": "smart-wallet",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/wallet.svg",
+    "icon": "./assets/images/wallet.png",
     "scheme": "smartwallet",
     "userInterfaceStyle": "automatic",
     "ios": {
@@ -14,7 +14,7 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/wallet.svg",
+        "foregroundImage": "./assets/images/wallet.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
@@ -23,7 +23,7 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/wallet.svg"
+      "favicon": "./assets/images/wallet.png"
     },
     "plugins": [
       "expo-router",
@@ -32,7 +32,7 @@
         {
           "backgroundColor": "#208AEF",
           "android": {
-            "image": "./assets/images/wallet.svg",
+            "image": "./assets/images/wallet.png",
             "imageWidth": 76
           }
         }

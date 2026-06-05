@@ -1,4 +1,4 @@
-import { User } from "react-native-google-auth";
+import { User } from "firebase/auth";
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 

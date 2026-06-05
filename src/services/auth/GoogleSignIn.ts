@@ -1,4 +1,9 @@
+import {
+    GoogleAuthProvider,
+    signInWithCredential
+} from "firebase/auth";
 import GoogleAuth, { GoogleAuthScopes } from "react-native-google-auth";
+import { auth } from "../../../firebaseConfig";
 
 /**
  * Initializes the ability to Google Sign In authenticate in the app.
@@ -28,16 +33,20 @@ export async function signIn() {
         const response = await GoogleAuth.signIn();
 
         if (response.type === 'success') {
-            const data = response.data
-            console.log('User signed in:', data.user);
-            return data
+            const { idToken } = response.data;
+            const credential = GoogleAuthProvider.credential(idToken);
+            const result = await signInWithCredential(auth, credential);
+            const user = result.user
+            console.log('User signed in:', user);
+            return user
         } else if (response.type === 'cancelled') {
             console.log('Sign in cancelled by user');
+            return null
         }
+
+        return null
     } catch (error) {
         console.error('Sign in failed:', error);
         throw error
     }
-
-    return null
 }

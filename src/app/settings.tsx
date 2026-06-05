@@ -13,7 +13,9 @@ export default function SettingsScreen() {
 
   const signOut = () => {
     setUser(null)
-    router.dismissAll()
+    if (router.canGoBack()) {
+      router.dismissAll()
+    }
     router.replace('/')
   }
 

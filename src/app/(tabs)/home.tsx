@@ -16,7 +16,7 @@ export default function HomeScreen() {
     return <></>
   }
 
-  const { localUri: userPhoto } = useRemoteAsset(user.photo ?? '')
+  const { localUri: userPhoto } = useRemoteAsset(user.photoURL ?? '')
 
   return (
     <ThemedView style={styles.container}>
@@ -33,7 +33,7 @@ export default function HomeScreen() {
               />
 
             <ThemedText type="title" style={styles.title}>
-              Welcome, {user.givenName}.
+              Welcome, {user.displayName}.
             </ThemedText>
           </ThemedView>
 

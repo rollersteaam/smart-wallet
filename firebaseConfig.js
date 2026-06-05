@@ -10,7 +10,7 @@ const projectId = GoogleServices.project_info.project_id
 const androidClientConfig = GoogleServices.client[0]
 
 const firebaseConfig = {
-  apiKey: androidClientConfig.api_key.current_key,
+  apiKey: androidClientConfig.api_key[0].current_key,
   authDomain: `${projectId}.firebaseapp.com`,
   databaseURL: `https://${projectId}.firebaseio.com`,
   projectId: projectId,
@@ -24,4 +24,4 @@ const app = initializeApp(firebaseConfig);
 // For more information on how to access Firebase in your project,
 // see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase
 
-const auth = getAuth(app);
+export const auth = getAuth(app);

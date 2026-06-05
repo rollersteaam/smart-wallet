@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Platform, Pressable, StyleSheet } from 'react-native';
 
 import { Image } from "expo-image";
@@ -20,14 +20,19 @@ export default function GoogleSignIn() {
     const setUser = useAuth(s => s.setUser)
 
     const signIn = async () => {
-        const data = await signInWithGoogle()
-        if (data) {
-            setUser(data?.user)
+        const user = await signInWithGoogle()
+        if (user) {
+            setUser(user)
         }
     }
 
+    const [hovered, setHovered] = useState(false);
+
     return (
-        <Pressable onPress={signIn}>
+        <Pressable onPress={signIn}
+            onHoverIn={() => setHovered(true)}
+            onHoverOut={() => setHovered(false)}
+            style={{ filter: hovered ? 'brightness(1.2)' : 'brightness(1)' }}>
             {({ pressed }) => (
                 <Image
                     source={LoginImage}

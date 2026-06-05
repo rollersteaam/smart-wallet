@@ -1,4 +1,4 @@
-import { Button, Host, Text } from '@expo/ui';
+import { Button, Column, Host, Text } from '@expo/ui';
 import { router, Stack } from 'expo-router';
 import { getAuth } from 'firebase/auth';
 import { StyleSheet } from 'react-native';
@@ -27,18 +27,19 @@ export default function SettingsScreen() {
           fontSize: 32
         },
         headerLeft: () => <IconButton
-            onPress={() => router.back()} 
-            name={{ ios: 'chevron.left', android: 'arrow_back', web: 'arrow_back' }}
-            style={{
-              paddingRight: Spacing.one
-            }}
-          />,
+          onPress={() => router.back()}
+          name={{ ios: 'chevron.left', android: 'arrow_back', web: 'arrow_back' }}
+          style={{
+            paddingRight: Spacing.one
+          }}
+        />,
       }} />
       <ThemedView style={styles.container}>
         <SafeAreaView style={styles.safeArea}>
-          <Host matchContents>
-            <Button
-              onPress={signOut}
+          <Host style={{flex: 1}}>
+            <Column alignment="center">
+              <Button
+                onPress={signOut}
               >
                 <Text textStyle={{
                   fontSize: 24
@@ -46,6 +47,7 @@ export default function SettingsScreen() {
                   Sign Out
                 </Text>
               </Button>
+            </Column>
           </Host>
         </SafeAreaView>
       </ThemedView>

@@ -1,7 +1,7 @@
+import { AnimatedSplashOverlay } from "@/components/animated-icon";
 import { useIsLoggedIn } from "@/hooks/use-auth";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from "expo-router";
 import { useColorScheme } from "react-native";
-import { AnimatedSplashOverlay } from "../animated-icon";
 
 export default function AppStack() {
     const colorScheme = useColorScheme();

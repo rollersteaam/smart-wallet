@@ -5,10 +5,12 @@ import { combine } from "zustand/middleware";
 export const useAuth = create(
     combine(
         {
-            user: null as User | null
+            user: null as User | null,
+            loading: true
         },
         (set) => ({
-            setUser: (newUser: User | null) => set({ user: newUser })
+            setUser: (newUser: User | null) => set({ user: newUser }),
+            setLoading: (newLoading: boolean) => set({ loading: newLoading }),
         })
     )
 )

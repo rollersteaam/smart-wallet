@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import {
-  browserLocalPersistence,
   getReactNativePersistence,
-  initializeAuth, ReactNativeAsyncStorage
+  initializeAuth,
+  ReactNativeAsyncStorage
 } from 'firebase/auth';
 import { createMMKV } from 'react-native-mmkv';
 
@@ -43,6 +43,8 @@ const MMKVStorageAdapter: ReactNativeAsyncStorage = {
   }
 }
 
-const auth = initializeAuth(app, {
-  persistence: Platform.OS === 'web' ? browserLocalPersistence : getReactNativePersistence(MMKVStorageAdapter)
-})
+if (Platform.OS !== 'web') {
+  initializeAuth(app, {
+    persistence: getReactNativePersistence(MMKVStorageAdapter)
+  })
+}

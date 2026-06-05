@@ -1,5 +1,5 @@
 import { AnimatedSplashOverlay } from "@/components/animated-icon";
-import { useIsLoggedIn } from "@/hooks/use-auth";
+import { useIsLoggedIn } from "@/hooks/stores/use-auth-store";
 import { Stack } from "expo-router";
 
 export default function AppStack() {
@@ -14,7 +14,9 @@ export default function AppStack() {
                 title: "Smart Wallet"
             }}>
                 <Stack.Protected guard={isLoggedIn}>
-                    <Stack.Screen name="(tabs)" />
+                    <Stack.Screen name="(tabs)" options={{
+                        title: "Smart Wallet"
+                    }} />
                 </Stack.Protected>
                 <Stack.Screen name="index" />
             </Stack>

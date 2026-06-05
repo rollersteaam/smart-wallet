@@ -1,16 +1,16 @@
 import { getAuth } from 'firebase/auth';
 
 import AppStack from '@/components/nav/app-stack';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuthStore } from '@/hooks/stores/use-auth-store';
 import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
 import { useEffect } from 'react';
 import { ActivityIndicator, useColorScheme, View } from 'react-native';
 import '../../firebaseConfig';
 
 export default function RootLayout() {
-  const setUser = useAuth(s => s.setUser)
-  const setLoading = useAuth(s => s.setLoading)
-  const loading = useAuth(s => s.loading)
+  const setUser = useAuthStore(s => s.setUser)
+  const setLoading = useAuthStore(s => s.setLoading)
+  const loading = useAuthStore(s => s.loading)
   const colorScheme = useColorScheme();
 
   useEffect(() => {

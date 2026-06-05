@@ -2,7 +2,7 @@ import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { useColorScheme } from 'react-native';
 
 import { Colors } from '@/constants/theme';
-import { useIsLoggedIn } from '@/hooks/use-auth';
+import { useIsLoggedIn } from '@/hooks/stores/use-auth-store';
 import { Stack } from 'expo-router';
 
 export default function AppTabs() {
@@ -36,15 +36,6 @@ export default function AppTabs() {
             <NativeTabs.Trigger.Icon
               sf="house"  
               md="home"
-              renderingMode="template"
-            />
-          </NativeTabs.Trigger>
-
-          <NativeTabs.Trigger name="explore" hidden={!isLoggedIn}>
-            <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
-            <NativeTabs.Trigger.Icon
-              sf="globe"
-              md="globe"
               renderingMode="template"
             />
           </NativeTabs.Trigger>

@@ -4,7 +4,7 @@ A smart wallet that lets users purchase benefits with their balance.
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
+## Run project
 
 1. Install dependencies
 
@@ -47,9 +47,18 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 1. Google Sign In: [React Native Google Auth](https://github.com/sbaiahmed1/react-native-google-auth) with 152 stars on GitHub. Whilst [React Native Google Sign In](https://react-native-google-signin.github.io/) (3.5k stars on GitHub) is the most widely used and recommended library, its free tier relies on an API that has been deprecated for a while. By using another library inspired by it that is free and implements the same recommended Credentials Manager flow, we can avoid the app being bricked by deprecation. The most ideal solution might be to buy the premium for RNGSI to use the most popular library, but this library certainly does the job well, for both Android and iOS.
 
-## Learn more
+2. Auth persistence: MMKV. It's very fast, sets it up for future persistence in the app (such as for offline mode), and easy to setup/use with Firebase auth persistence.
 
-To learn more about developing your project with Expo, look at the following resources:
+3. UI: I used expo UI's platform-native components for the most part, to preserve the platform feel across the app. I would possibly move over to Tamagui because the UI/UX is really well thought out.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Missing elements
+
+1. The transaction history list does not display correctly. Tried to use @expo/ui Host and List but it bugs out due to library issues with lists. Need to figure out.
+
+2. No saving pots
+
+3. No voucher shop
+
+4. No loyalty points
+
+5. No testing

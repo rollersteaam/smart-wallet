@@ -2,7 +2,7 @@ import { User } from "firebase/auth";
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
-export const useAuth = create(
+export const useAuthStore = create(
     combine(
         {
             user: null as User | null,
@@ -16,6 +16,6 @@ export const useAuth = create(
 )
 
 export function useIsLoggedIn() {
-    const user = useAuth(s => s.user)
+    const user = useAuthStore(s => s.user)
     return user != null
 }

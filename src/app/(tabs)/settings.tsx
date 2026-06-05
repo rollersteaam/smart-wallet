@@ -7,10 +7,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import IconButton from '@/components/controls/icon-button';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuthStore } from '@/hooks/stores/use-auth-store';
 
 export default function SettingsScreen() {
-  const setUser = useAuth((s) => s.setUser)
+  const setUser = useAuthStore((s) => s.setUser)
 
   const signOut = async () => {
     setUser(null)

@@ -6,7 +6,7 @@ import GoogleSignIn from '@/components/auth/google-sign-in';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-import { useIsLoggedIn } from '@/hooks/use-auth';
+import { useIsLoggedIn } from '@/hooks/stores/use-auth-store';
 import { router } from 'expo-router';
 import { useEffect } from 'react';
 

@@ -1,5 +1,5 @@
 import { AnimatedSplashOverlay } from "@/components/animated-icon";
-import { useIsLoggedIn } from "@/hooks/use-auth";
+import { useIsLoggedIn } from "@/hooks/stores/use-auth-store";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from "expo-router";
 import { useColorScheme } from "react-native";
 

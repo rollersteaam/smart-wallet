@@ -12,7 +12,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 import { Colors, MaxContentWidth, Spacing } from '@/constants/theme';
-import { useIsLoggedIn } from '@/hooks/use-auth';
+import { useIsLoggedIn } from '@/hooks/stores/use-auth-store';
 
 export default function AppTabs() {
   const isLoggedIn = useIsLoggedIn()
@@ -24,9 +24,6 @@ export default function AppTabs() {
         <CustomTabList>
           <TabTrigger name="home" href="/home" asChild>
             <TabButton>Home</TabButton>
-          </TabTrigger>
-          <TabTrigger name="explore" href="/explore" asChild>
-            <TabButton>Explore</TabButton>
           </TabTrigger>
           <TabTrigger name="settings" href="/settings" asChild>
             <TabButton>Settings</TabButton>

@@ -1,42 +1,126 @@
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { Image } from 'expo-image';
+import { getLocales } from 'expo-localization';
+import { useShallow } from 'zustand/react/shallow';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-import { useAuth } from '@/hooks/use-auth';
+import { MaxContentWidth, Spacing } from '@/constants/theme';
+import { useAuthStore } from '@/hooks/stores/use-auth-store';
+import { useWalletStore } from '@/hooks/stores/use-wallet-store';
 import useRemoteAsset from '@/hooks/use-remote-asset';
-import { Image } from 'expo-image';
+import { Column, Host, Row } from '@expo/ui';
+
+function formatCurrency(value: number) {
+  const { languageTag, currencyCode } = getLocales()[0];
+  return new Intl.NumberFormat(languageTag, {
+    style: 'currency',
+    currency: currencyCode ?? 'GBP',
+  }).format(value);
+}
 
 export default function HomeScreen() {
-  const user = useAuth((s) => s.user)
+  const user = useAuthStore((s) => s.user)
 
   if (!user) {
     return <></>
   }
 
+  const { balance, history } = useWalletStore(
+    useShallow((s) => ({ balance: s.balance, history: s.history }))
+  )
   const { localUri: userPhoto } = useRemoteAsset(user.photoURL ?? '')
 
   return (
     <ThemedView style={styles.container}>
-        <SafeAreaView style={styles.safeArea}>
-          <ThemedView style={styles.heroSection}>
-            <Image
-              source={userPhoto}
-              style={{
-                width: 100,
-                height: 100,
-                borderRadius: 9999,
-                overflow: 'hidden'
-              }}
-              />
+      <SafeAreaView style={styles.safeArea}>
+        <ScrollView contentContainerStyle={styles.heroSection}>
+          <Image
+            source={userPhoto}
+            style={{
+              width: 100,
+              height: 100,
+              borderRadius: 9999,
+              overflow: 'hidden',
+              marginTop: 120
+            }}
+          />
 
-            <ThemedText type="title" style={styles.title}>
-              Welcome, {user.displayName?.split(" ")[0]}.
+          <ThemedText type="title" style={styles.title}>
+            Welcome, {user.displayName?.split(" ")[0]}.
+          </ThemedText>
+
+          <ThemedView type="backgroundElement"
+            style={{
+              padding: Spacing.six,
+              alignItems: 'center',
+              borderRadius: 24,
+              width: '100%'
+            }}>
+            <ThemedText>
+              Your Balance
+            </ThemedText>
+            <ThemedText type="title">
+              {formatCurrency(balance)}
             </ThemedText>
           </ThemedView>
-        </SafeAreaView>
-      </ThemedView>
+
+          <ThemedView type="backgroundElement"
+            style={{
+              // padding: Spacing.six,
+              alignItems: 'center',
+              borderRadius: 24,
+              width: '100%'
+            }}>
+            <ThemedText style={{
+              marginBottom: Spacing.four
+            }}>
+              Transaction History
+            </ThemedText>
+
+            <Host style={{
+              flex: 1
+            }}>
+              <Row spacing={16}>
+                <Column style={{
+                  width: 50
+                }}
+                >
+                  <ThemedText type="small">
+                    Date
+                  </ThemedText>
+                  {history.map((h) => <ThemedText key={h.id} numberOfLines={1}>{h.date.toISOString()}</ThemedText>)}
+                </Column>
+
+                <Column>
+                  <ThemedText type="small">
+                    Description
+                  </ThemedText>
+                  {history.map((h) => <ThemedText key={h.id} numberOfLines={1}>{h.description}</ThemedText>)}
+                </Column>
+
+                <Column>
+                  <ThemedText type="small">
+                    Amount
+                  </ThemedText>
+                  {history.map((h) => <ThemedText key={h.id} numberOfLines={1}>{formatCurrency(h.amount)}</ThemedText>)}
+                </Column>
+
+                <Column>
+                  <ThemedText type="small">
+                    Balance
+                  </ThemedText>
+                  {history.map((h) => <ThemedText key={h.id} numberOfLines={1}>{formatCurrency(h.runningBalance)}</ThemedText>)}
+                </Column>
+              </Row>
+            </Host>
+
+          </ThemedView>
+        </ScrollView>
+      </SafeAreaView>
+    </ThemedView>
   );
 }
 
@@ -51,13 +135,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.four,
     alignItems: 'center',
     gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
     maxWidth: MaxContentWidth,
   },
   heroSection: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
     paddingHorizontal: Spacing.four,
     gap: Spacing.four,
   },

@@ -43,6 +43,6 @@ const MMKVStorageAdapter: ReactNativeAsyncStorage = {
   }
 }
 
-export const auth = initializeAuth(app, {
+const auth = initializeAuth(app, {
   persistence: Platform.OS === 'web' ? browserLocalPersistence : getReactNativePersistence(MMKVStorageAdapter)
-});
+})

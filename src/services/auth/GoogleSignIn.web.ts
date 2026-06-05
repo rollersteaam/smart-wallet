@@ -1,8 +1,8 @@
 import {
+    getAuth,
     GoogleAuthProvider,
     signInWithPopup
 } from "firebase/auth";
-import { auth } from "../../../firebaseConfig";
 
 /**
  * Stub. Used in the Android & iOS implementation.
@@ -19,6 +19,7 @@ export async function initializeAuth() {
  */
 export async function signIn() {
     try {
+        const auth = getAuth()
         const provider = new GoogleAuthProvider();
         const result = await signInWithPopup(auth, provider);
         const user = result.user

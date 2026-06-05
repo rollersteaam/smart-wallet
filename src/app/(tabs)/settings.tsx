@@ -1,5 +1,6 @@
 import { Button, Host, Text } from '@expo/ui';
 import { router, Stack } from 'expo-router';
+import { getAuth } from 'firebase/auth';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -11,12 +12,9 @@ import { useAuth } from '@/hooks/use-auth';
 export default function SettingsScreen() {
   const setUser = useAuth((s) => s.setUser)
 
-  const signOut = () => {
+  const signOut = async () => {
     setUser(null)
-    if (router.canGoBack()) {
-      router.dismissAll()
-    }
-    router.replace('/')
+    await getAuth().signOut()
   }
 
   return (
